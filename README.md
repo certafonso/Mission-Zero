@@ -20,11 +20,13 @@ https://trinket.io/mission-zero
 
 ### Hello World
 
-Vamos fazer o programa mais básico possivel, escrever escrever uma mensagem na linha de comandos. Para isso vamos usar a função `print()`
+Vamos começar por fazer o programa mais básico possivel, escrever escrever uma mensagem na linha de comandos. Para isso vamos usar a função `print()`.
 
 ```python
 print("Hello World")
 ```
+
+Dentro dos parenteses tem aqui a que se chama o argumento da função. A função print tem apenas um argumento: o texto que irá ser escrito. Este texto tem de estar entre aspas para o python o reconhecer como texto (string), e não como um comando ou variável.
 
 ### Fazer contas
 
@@ -80,7 +82,13 @@ batata = 5
 coelho = banana * batata
 
 print(coelho)
+```
 
+O código acima, apesar de dar para perceber que se estão a multiplicar dois numeros, não está escrito da melhor maneira. Não dá para perceber o que significa cada numero, ou qual o significado do seu produto. 
+
+Um exemplo de bons nomes de variáveis seria este:
+
+```python
 # exemplo de bons nomes para variáveis
 base = 4
 altura = 5
@@ -129,6 +137,8 @@ else:
     print("O numero é impar")
 ```
 
+Se um numero for par, o resto da sua divisão por 2 será 0. Assim, para verificarmos se o numero é par precisamos de verificar essa condição (`numero % 2 == 0`), se a condição for verdadeira, o numero é par e escrevemos isso no ecrã, caso contrário, o numero é impar e então escrevemos isso no ecrã.
+
 ### Contar até dez
 
 Vamos então tentar algo um pouco mais complexo: contar até 10.
@@ -151,10 +161,10 @@ Pronto, está bem podem fazer isso, mas se eu vos pedir para contarem até 10000
 
 ### Loops
 
-Todas as linguagens de programação oferecem loops que vão facilitar muito esta tarefa. Um loop (ou um ciclo), como o nome indica permite executar uma secção de código várias vezes. No python existem dois tipos de loop: `for` e `while`. Vamos começar por ver o `while`.
+Todas as linguagens de programação oferecem loops que vão facilitar muito esta tarefa. Um loop (ou um ciclo), como o nome indica permite executar uma secção de código várias vezes de seguida. No python existem dois tipos de loop: `for` e `while`. Vamos começar por ver o `while`.
 
 ```python
-while condição
+while condição:
     faz isto
 ```
 

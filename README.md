@@ -14,7 +14,11 @@ Em conjunto com a Agência Espacial Europeia (ESA), a Raspberry Pi Foundation qu
 
 ## Como programar em python
 
-https://trinket.io/mission-zero
+Um programa de computador é apenas um ficheiro de texto escrito numa linguagem especifica, que o computador vai compilar em instruções que o processador do computador consegue entender.
+
+Para programarem em python a unica coisa que precisam e escrever o vosso programa usando um editor de texto qualquer (podem usar o notepad, mas normalmente usa-se um editor mais avançado como o VSCode que faz coisas mais avançadas como detetar erros ou completar comandos). Tendo o vosso programa escrito só precisam de o correr, tendo o python instalado no computador.
+
+No entanto, nesta atividade vamos usar um editor de codigo online chamado [trinket](https://trinket.io/mission-zero). Assim vamos puder escrever o nosso codigo e corre-lo sem precisar de instalar nada no computador. Além disso, este site simula o computador Astro PI.
 
 ### Hello World
 

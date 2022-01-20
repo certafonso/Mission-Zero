@@ -1,4 +1,4 @@
-# Astro Pi
+# Mission Zero
 
 Este guia é fortemente inspirado no [guia passo a passo](https://projects.raspberrypi.org/pt-PT/projects/astro-pi-mission-zero) presente na página do projeto.
 
@@ -11,8 +11,6 @@ O Astro PI é um computador
 ## O que é a Mission Zero?
 
 Em conjunto com a Agência Espacial Europeia (ESA), a Raspberry Pi Foundation quer introduzir mais jovens ao mundo da programação, para isso criaram a Mission Zero em que vão ter a opurtunidade de fazer um pequeno programa para ler a humidade na ISS e enviar uma mensagem as astronautas.
-
-## Porquê aprender programação?
 
 ## Como programar em python
 
@@ -183,9 +181,43 @@ while i <= LIMITE:
 print("Acabado")
 ```
 
+### Bibliotecas
+
+Para fazer coisas comuns, muitas vezes já houve alguém a fazer esse código e o disponibilizou para toda a gente poder usar livremente. A esses conjuntos de programas chamam-se bibliotecas.
+
+Para importarem uma destas bibliotecas para poderem usar no vosso programa usam o seguinte código:
+
+```python
+# importar a biblioteca time
+import time
+
+# mostrar o tempo atual
+print(time.asctime())
+```
+
+O código acima importa a biblioteca `time` e depois usa função `asctime()` dessa biblioteca para imprimir no ecrã a data e hora atual.
+
+Outra maneira, muita vezes preferivel, de fazer o mesmo é esta:
+
+```python
+# importar a função asctime da biblioteca time
+from time import asctime
+
+# mostrar o tempo atual
+print(asctime())
+```
+
+Com este exemplo estamos a importar apenas a função que queremos usar. Esta forma é preferivel se apenas precisarmos de algumas funções da biblioteca uma vez que o programa apenas coloca na memória as funções que vamos utilizar e não gasta espaço com coisas que não nos são uteis.
+
+Quando instalam o python já existem algumas bibliotecas instaladas, por exemplo a biblioteca `math` que tem algumas funções matemáticas como funções trigonométricas e constantes como o pi. No entanto, para participar na Mission Zero, só podemos usar a biblioteca `random` que permite gerar numeros aleatórios, a biblioteca `time` que permite fazer coisas relacionadas com tempo, como obter a data ou fazer uma pausa no programa e a bilioteca `sense_hat` que nos permite controlar o sense hat.
 
 ## Sense Hat
-- Inicializações
+
+Chega de teoria, vamos então começar a utilizar o nosso computador!
+
+### Inicializações
+
+Primeiro vamos importar a biblioteca do sense hat e fazer algumas inicializações.
         
 ```python
 # importar a biblioteca do SenseHat
@@ -196,7 +228,9 @@ sense = SenseHat()
 sense.set_rotation(270)
 ```
 
-- Mostrar Mensagem
+### Mostrar Mensagem
+
+Depois de feitas as inicializações vamos então aos básicos: mostrar texto no ecrã LED. Para isso usamos a função `show_message()`.
 
 ```python
 sense.show_message("Astro Pi")
@@ -205,7 +239,7 @@ sense.show_message("Astro Pi")
 sense.show_message("Astro Pi", scroll_speed=0.05)
 ```
 
-Caracteres aceites:
+Esta função apenas aceita estes caracteres:
 
 ```
 +-*/!"#$><0123456789.=)(
@@ -217,14 +251,9 @@ abcdefghijklmnopqrstuvwxyz
 ?,;:|@%[&_']\~
 ```
 
-- Escolher nome do computador
+### Mudar as cores
 
-```python
-sense.show_message("My name should be Ada Lovelace")
-```
-
-- Escolher cores
-- Seletor de cores: [https://www.w3schools.com/colors/colors_rgb.asp](https://www.w3schools.com/colors/colors_rgb.asp)
+Escrever apenas texto a branco é aborrecido... Felizmente a função `show_message()` permite-nos escolher a cor do texto e do fundo.
 
 ```python
 # variavel com tupple (R,G,B)
@@ -233,10 +262,18 @@ green = (0,255,0)
 sense.show_message("Astro Pi", text_colour=red, back_colour=green)
 ```
 
-- Imagens
+Para definir as cores estamos a usar um tipo diferente de variáveis chamado tupple. Ao abrimos parenteses podemos por mais do que um número dentro de uma variável, estes números tem de estar separados por virgulas.
+
+Para definir uma cor estamos a definir 3 numeros diferentes (todos podem tomar valores entre 0 e 255). O primeiro é a quantidade de vermelho que a cor tem, o segundo a quantidade de verde e, por ultimo a quantidade de azul. A mistura destas 3 cores dá-nos a nossa cor.
+
+Para facilitar a escolha de cores podem usar este [site](https://www.w3schools.com/colors/colors_rgb.asp) para misturarem a cor que quiserem.
+
+### Imagens
+
+Também podem desenhar uma imagem no ecrã, para isso usa-se a função `set_pixels()`:
 
 ```python
-# definir variáveis
+# definir cores
 w = (255, 255, 255)
 b = (0, 0, 0)
 g = (50,50,50)
@@ -244,7 +281,7 @@ s = (200,255,200)
 r = (255,0,0)
 
 # imagem a desenhar (8x8)
-picture = [
+imagem = [
     g, b, b, b, b, b, b, g,
     b, g, g, g, g, g, g, b,
     b, g, b, b, g, w, g, g,
@@ -256,18 +293,41 @@ picture = [
     ]
 
 # desenhar a imagem
-sense.set_pixels(picture)
+sense.set_pixels(imagem)
 ```
 
-- Sleep
+Para definir a imagem usa-se uma lista, que funciona da mesma forma que um tupple, mas usando-se parenteses retos. O primeiro elemento desta lista representa o primeiro pixel na linha de cima, o segundo representa o pixel seguinte, e por aí fora.
+
+A vantagem das listas em relação às tupples é que podes alterar um elemento especifico da lista, por exemplo:
 
 ```python
+# definir a lista
+lista = [1,2,3,4,5,6]
+
+# mudar o 1º elemento da lista para 3
+lista[0] = 3
+
+# mudar o 6º elemento da lista para ser igual ao 3º
+lista[5] = lista[2]
+```
+
+Para conseguires desenhar melhor a tua imagem, podes começar por a desenhar numa folha quadriculada e depois passa-la para o programa.
+
+### Sleep
+
+Se quiserem mostrar várias imagens diferentes precisam de fazer uma pausa no programa para dar tempo de se ver a imagem. Conseguem fazer isso através da função `sleep()` da biblioteca `time`.
+
+```python
+# importar a função
 from time import sleep
 
+# fazer uma pausa no programa durante 2 segundos
 sleep(2)
 ```
 
-- Ler humidade
+### Ler humidade
+
+O objetivo do programa que estão a fazer é mostrar a humidade aos astronautas da ISS. Para lerem a humidade do sensor usam a função `get_humidity`.
 
 ```python
 # ler humidade
@@ -283,7 +343,23 @@ sense.show_message(str(humidade))
 sense.show_message( "It is " + str(humidade) + " %" )
 ```
 
-- Reagir à humidade
+### Ideias
+
+Está na hora de criares o teu programa, tens aqui algumas ideias de coisas que podes fazer:
+
+- Desenhar o lenço do grupo
+- Fazer transições entre imagens
+- Reagir à humidade, se estiver acima de um valor mostram uma mensagem/imagem, se estiver abaixo mostram outra.
+- Mostrar a data
+- Tentar usar tudo o que aprenderam agora
+
+### Ideias para explorar mais
+
+Se já acabaste o teu programa e queres explorar mais tens aqui algumas ideias:
+
+- [Flappy Astronaut](https://projects.raspberrypi.org/en/projects/flappy-astronaut/0)
+- [Marble Maze](https://projects.raspberrypi.org/en/projects/sense-hat-marble-maze/0)
+- [Jogo da Vida](https://pt.wikipedia.org/wiki/Jogo_da_vida)
 
 ```python
 # definir cores

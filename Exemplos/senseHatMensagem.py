@@ -18,3 +18,5 @@ green = (0,255,0)
 
 # Texto com cores
 sense.show_message("Astro Pi", text_colour=red, back_colour=green)
+
+sense.clear()

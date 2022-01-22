@@ -28,3 +28,14 @@ imagem = [
 
 # desenhar a imagem
 sense.set_pixels(imagem)
+
+
+
+correr = True
+
+while correr:
+    # deteta movimento no joystick
+    for event in sense.stick.get_events():
+        # limpa a matrix do senseHat e sai do loop
+        sense.clear()
+        correr = False

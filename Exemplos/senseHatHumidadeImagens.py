@@ -1,7 +1,8 @@
-# Este programa lê a humidade e mostra uma imagem diferente, consoante o nivel de humidade
+# Este programa lê a humidade e mostra, durante 30s, uma imagem diferente, consoante o nivel de humidade
 
 # importar a biblioteca do SenseHat
 from sense_hat import SenseHat
+from time import sleep
 
 # Inicializar o SenseHat e a rotação dos sensores
 sense = SenseHat()
@@ -47,3 +48,7 @@ if humid >= 40:
     sense.set_pixels(wet)
 else:
     sense.set_pixels(dry)
+
+sleep(30)
+
+sense.clear()

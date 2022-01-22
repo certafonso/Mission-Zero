@@ -2,12 +2,6 @@
 
 Este guia é fortemente inspirado no [guia passo a passo](https://projects.raspberrypi.org/pt-PT/projects/astro-pi-mission-zero) presente na página do projeto.
 
-## O que é o Astro PI?
-
-O Astro PI é um computador 
-
-![Astro Pi](https://www.raspberrypi.org/app/uploads/2021/08/Astro-PI-IRvis-900x506.jpg)
-
 ## O que é a Mission Zero?
 
 Em conjunto com a Agência Espacial Europeia (ESA), a Raspberry Pi Foundation quer introduzir mais jovens ao mundo da programação, para isso criaram a Mission Zero em que vão ter a opurtunidade de fazer um pequeno programa para ler a humidade na ISS e enviar uma mensagem as astronautas.
@@ -364,46 +358,3 @@ Se já acabaste o teu programa e queres explorar mais tens aqui algumas ideias:
 - [Flappy Astronaut](https://projects.raspberrypi.org/en/projects/flappy-astronaut/0)
 - [Marble Maze](https://projects.raspberrypi.org/en/projects/sense-hat-marble-maze/0)
 - [Jogo da Vida](https://pt.wikipedia.org/wiki/Jogo_da_vida)
-
-```python
-# definir cores
-o=(255,130,0)
-b=(0,0,255)
-c=(0,150,255)
-e=(80,80,80)
-g=(0,255,0)
-y=(255,255,0)
-
-# definir imagens
-wet = [
-    b, b, b, b, b, b, b, b,
-    b, b, b, b, b, b, b, b,
-    b, o, b, o, o, o, b, b,
-    b, o, o, o, o, e, o, b,
-    b, o, o, o, o, o, o, b,
-    b, o, b, o, o, o, b, b,
-    b, b, b, b, b, b, b, b,
-    b, b, b, b, b, b, b, b
-]
-
-dry = [
-    c, c, g, g, c, c, c, c,
-    c, c, g, g, c, g, c, c,
-    g, c, g, g, c, g, c, c,
-    g, c, g, g, c, g, c, c,
-    g, g, g, g, g, g, c, c,
-    c, c, g, g, c, c, c, c,
-    y, y, y, y, y, y, y, y,
-    y, y, y, y, y, y, y, y
-]
-
-# obter humidade
-humid = sense.get_humidity()
-
-# decidir que imagem mostrar
-humid = sense.get_humidity()
-if humid >= 40:
-    sense.set_pixels(wet)
-else:
-    sense.set_pixels(dry)
-```
